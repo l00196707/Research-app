@@ -1,4 +1,4 @@
-import random
+import random, time
 from flask import Flask,jsonify
 
 app = Flask(__name__)
@@ -17,8 +17,12 @@ def data():
     """ 
     Data endpoint returning random value
     """
+    #simulate latency
     if random.random() < FAILURE_RATE:
-        return jsonify({"error": "simulated failure"}), 500
+        if random.random() < 0.5:
+            time.sleep(2) #slow response
+        else:
+            return jsonify({"error": "simulated failure"}), 500
 
     value = random.randint(1,100)
     return jsonify({"value": value})
