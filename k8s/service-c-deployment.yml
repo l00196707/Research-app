@@ -32,7 +32,7 @@ spec:
 
         readinessProbe:
           httpGet:
-            path: /health
+            path: /data
             port: 5002
           initialDelaySeconds: 2
           periodSeconds: 3
