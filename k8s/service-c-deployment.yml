@@ -19,6 +19,21 @@ spec:
       - name: service-c
         image: research-app-service-c:latest
         imagePullPolicy: IfNotPresent
-
         ports:
-        - containerPort: 5002
+          - containerPort: 5002
+
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 5002
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          failureThreshold: 3
+
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 5002
+          initialDelaySeconds: 2
+          periodSeconds: 3
+          

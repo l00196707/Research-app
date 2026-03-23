@@ -15,6 +15,6 @@ spec:
       containers:
         - name: service-b
           image: research-app-service-b:latest
-          imagePullPolicy: Never
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 5001
